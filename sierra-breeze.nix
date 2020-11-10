@@ -1,7 +1,7 @@
 {
   stdenv, fetchurl,
   extra-cmake-modules, unzip,
-  frameworkintegration, kdeFrameworks, plasma5, qt5
+  kdeFrameworks, plasma5, qt5
 }:
 
 stdenv.mkDerivation {
