@@ -1,0 +1,12 @@
+diff --git a/breezebutton.cpp b/breezebutton.cpp
+index 63bc62d..8bacea6 100644
+--- a/breezebutton.cpp
++++ b/breezebutton.cpp
+@@ -26,6 +26,7 @@
+ #include <KColorUtils>
+ 
+ #include <QPainter>
++#include <QPainterPath>
+ 
+ namespace SierraBreeze
+ {

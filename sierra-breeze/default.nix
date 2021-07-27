@@ -1,23 +1,27 @@
 {
-  stdenv, fetchurl,
+  stdenv, fetchFromGitHub,
   extra-cmake-modules, unzip,
-  kdeFrameworks, plasma5, qt5
+  libsForQt5
 }:
 
 stdenv.mkDerivation {
   pname = "sierraBreeze";
   version = "0.1";
 
-  src = fetchurl {
-    url = "https://github.com/ishovkun/SierraBreeze/archive/0e132fa46871283265c4f0e22e7bb04d8ee7553e.zip";
-    sha256 = "26da20655d4a5d87aba0ec03346cf49845b1401fead49355496d0a29ca470a5b";
+  src = fetchFromGitHub {
+    owner = "ishovkun";
+    repo = "SierraBreeze";
+    rev = "0e132fa46871283265c4f0e22e7bb04d8ee7553e";
+    sha256 = "0z7srdkm6gjq1lmxjhh22x3p2l72cs3n51lzwxyqq0l7nzx5gg91";
   };
 
+  patches = [ ./include-more-headers.patch ];
+
   nativeBuildInputs = [ extra-cmake-modules unzip ];
-  propagatedBuildInputs = with kdeFrameworks; [
-    frameworkintegration kcmutils kcompletion kconfig plasma5.kdecoration kguiaddons
-    ki18n kservice kwayland kwidgetsaddons kwindowsystem qt5.qtdeclarative
-    qt5.qtx11extras
+  propagatedBuildInputs = with libsForQt5; [
+    frameworkintegration kcmutils kconfigwidgets kcoreaddons kdecoration
+    kguiaddons ki18n kwayland kwindowsystem plasma-framework qtdeclarative
+    qtx11extras
   ];
   outputs = [ "bin" "dev" "out" ];
 
